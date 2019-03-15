@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0014ae20883e4f0f806e9ad261b9ddd8" Name="Diagram1">
+        <EntityTypeShape EntityType="employees_manager_ver2Model.contactemployeeinfo" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="employees_manager_ver2Model.employeedetail" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="employees_manager_ver2Model.qualification" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="employees_manager_ver2Model.salaryinfo" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="employees_manager_ver2Model.timeinfo" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="employees_manager_ver2Model.workhistory" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="employees_manager_ver2Model.contactemployeeinfo_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="employees_manager_ver2Model.qualification_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="employees_manager_ver2Model.timeinfo_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="employees_manager_ver2Model.workhistory_ibfk_1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

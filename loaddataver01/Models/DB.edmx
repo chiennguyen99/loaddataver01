@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="employees_manager_ver2Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="contactemployeeinfo">
+          <Key>
+            <PropertyRef Name="idContact" />
+          </Key>
+          <Property Name="idContact" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="ctCity" Type="varchar" MaxLength="40" />
+          <Property Name="ctAddress" Type="varchar" MaxLength="40" />
+          <Property Name="ctPostalCode" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="employeedetail">
+          <Key>
+            <PropertyRef Name="employeeID" />
+          </Key>
+          <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="30" />
+          <Property Name="lastName" Type="varchar" MaxLength="30" />
+          <Property Name="dateOfBirth" Type="date" />
+        </EntityType>
+        <EntityType Name="qualification">
+          <Key>
+            <PropertyRef Name="idQualification" />
+          </Key>
+          <Property Name="idQualification" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="experience" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="salaryinfo">
+          <Key>
+            <PropertyRef Name="idSalaryInfo" />
+          </Key>
+          <Property Name="idSalaryInfo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="monthlySalary" Type="int" />
+          <Property Name="moneyCurrency" Type="int" />
+          <Property Name="moneyDeductions" Type="int" />
+          <Property Name="moneyInsurance" Type="int" />
+        </EntityType>
+        <EntityType Name="timeinfo">
+          <Key>
+            <PropertyRef Name="idTime" />
+          </Key>
+          <Property Name="idTime" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="workHours" Type="int" />
+          <Property Name="offDay" Type="int" />
+          <Property Name="overTime" Type="int" />
+          <Property Name="extraday" Type="int" />
+        </EntityType>
+        <EntityType Name="workhistory">
+          <Key>
+            <PropertyRef Name="idWorkHistory" />
+          </Key>
+          <Property Name="idWorkHistory" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeID" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="companyName" Type="varchar" MaxLength="40" />
+          <Property Name="address" Type="varchar" MaxLength="40" />
+          <Property Name="phoneNumber" Type="varchar" MaxLength="30" />
+          <Property Name="officenumber" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="contactemployeeinfo_ibfk_1">
+          <End Role="employeedetail" Type="Self.employeedetail" Multiplicity="1" />
+          <End Role="contactemployeeinfo" Type="Self.contactemployeeinfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeedetail">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="contactemployeeinfo">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="qualification_ibfk_1">
+          <End Role="employeedetail" Type="Self.employeedetail" Multiplicity="1" />
+          <End Role="qualification" Type="Self.qualification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeedetail">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="qualification">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="timeinfo_ibfk_1">
+          <End Role="employeedetail" Type="Self.employeedetail" Multiplicity="1" />
+          <End Role="timeinfo" Type="Self.timeinfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeedetail">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="timeinfo">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="workhistory_ibfk_1">
+          <End Role="employeedetail" Type="Self.employeedetail" Multiplicity="1" />
+          <End Role="workhistory" Type="Self.workhistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeedetail">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="workhistory">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="employees_manager_ver2ModelStoreContainer">
+          <EntitySet Name="contactemployeeinfo" EntityType="Self.contactemployeeinfo" Schema="employees_manager_ver2" store:Type="Tables" />
+          <EntitySet Name="employeedetail" EntityType="Self.employeedetail" Schema="employees_manager_ver2" store:Type="Tables" />
+          <EntitySet Name="qualification" EntityType="Self.qualification" Schema="employees_manager_ver2" store:Type="Tables" />
+          <EntitySet Name="salaryinfo" EntityType="Self.salaryinfo" Schema="employees_manager_ver2" store:Type="Tables" />
+          <EntitySet Name="timeinfo" EntityType="Self.timeinfo" Schema="employees_manager_ver2" store:Type="Tables" />
+          <EntitySet Name="workhistory" EntityType="Self.workhistory" Schema="employees_manager_ver2" store:Type="Tables" />
+          <AssociationSet Name="contactemployeeinfo_ibfk_1" Association="Self.contactemployeeinfo_ibfk_1">
+            <End Role="employeedetail" EntitySet="employeedetail" />
+            <End Role="contactemployeeinfo" EntitySet="contactemployeeinfo" />
+          </AssociationSet>
+          <AssociationSet Name="qualification_ibfk_1" Association="Self.qualification_ibfk_1">
+            <End Role="employeedetail" EntitySet="employeedetail" />
+            <End Role="qualification" EntitySet="qualification" />
+          </AssociationSet>
+          <AssociationSet Name="timeinfo_ibfk_1" Association="Self.timeinfo_ibfk_1">
+            <End Role="employeedetail" EntitySet="employeedetail" />
+            <End Role="timeinfo" EntitySet="timeinfo" />
+          </AssociationSet>
+          <AssociationSet Name="workhistory_ibfk_1" Association="Self.workhistory_ibfk_1">
+            <End Role="employeedetail" EntitySet="employeedetail" />
+            <End Role="workhistory" EntitySet="workhistory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="employees_manager_ver2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="contactemployeeinfo">
+          <Key>
+            <PropertyRef Name="idContact" />
+          </Key>
+          <Property Name="idContact" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="ctCity" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ctAddress" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ctPostalCode" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="employeedetail" Relationship="Self.contactemployeeinfo_ibfk_1" FromRole="contactemployeeinfo" ToRole="employeedetail" />
+        </EntityType>
+        <EntityType Name="employeedetail">
+          <Key>
+            <PropertyRef Name="employeeID" />
+          </Key>
+          <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dateOfBirth" Type="DateTime" />
+          <NavigationProperty Name="contactemployeeinfoes" Relationship="Self.contactemployeeinfo_ibfk_1" FromRole="employeedetail" ToRole="contactemployeeinfo" />
+          <NavigationProperty Name="qualifications" Relationship="Self.qualification_ibfk_1" FromRole="employeedetail" ToRole="qualification" />
+          <NavigationProperty Name="timeinfoes" Relationship="Self.timeinfo_ibfk_1" FromRole="employeedetail" ToRole="timeinfo" />
+          <NavigationProperty Name="workhistories" Relationship="Self.workhistory_ibfk_1" FromRole="employeedetail" ToRole="workhistory" />
+        </EntityType>
+        <EntityType Name="qualification">
+          <Key>
+            <PropertyRef Name="idQualification" />
+          </Key>
+          <Property Name="idQualification" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="experience" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="employeedetail" Relationship="Self.qualification_ibfk_1" FromRole="qualification" ToRole="employeedetail" />
+        </EntityType>
+        <EntityType Name="salaryinfo">
+          <Key>
+            <PropertyRef Name="idSalaryInfo" />
+          </Key>
+          <Property Name="idSalaryInfo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="monthlySalary" Type="Int32" />
+          <Property Name="moneyCurrency" Type="Int32" />
+          <Property Name="moneyDeductions" Type="Int32" />
+          <Property Name="moneyInsurance" Type="Int32" />
+        </EntityType>
+        <EntityType Name="timeinfo">
+          <Key>
+            <PropertyRef Name="idTime" />
+          </Key>
+          <Property Name="idTime" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="workHours" Type="Int32" />
+          <Property Name="offDay" Type="Int32" />
+          <Property Name="overTime" Type="Int32" />
+          <Property Name="extraday" Type="Int32" />
+          <NavigationProperty Name="employeedetail" Relationship="Self.timeinfo_ibfk_1" FromRole="timeinfo" ToRole="employeedetail" />
+        </EntityType>
+        <EntityType Name="workhistory">
+          <Key>
+            <PropertyRef Name="idWorkHistory" />
+          </Key>
+          <Property Name="idWorkHistory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeID" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="companyName" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="phoneNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="officenumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="employeedetail" Relationship="Self.workhistory_ibfk_1" FromRole="workhistory" ToRole="employeedetail" />
+        </EntityType>
+        <Association Name="contactemployeeinfo_ibfk_1">
+          <End Role="employeedetail" Type="Self.employeedetail" Multiplicity="1" />
+          <End Role="contactemployeeinfo" Type="Self.contactemployeeinfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeedetail">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="contactemployeeinfo">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="qualification_ibfk_1">
+          <End Role="employeedetail" Type="Self.employeedetail" Multiplicity="1" />
+          <End Role="qualification" Type="Self.qualification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeedetail">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="qualification">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="timeinfo_ibfk_1">
+          <End Role="employeedetail" Type="Self.employeedetail" Multiplicity="1" />
+          <End Role="timeinfo" Type="Self.timeinfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeedetail">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="timeinfo">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="workhistory_ibfk_1">
+          <End Role="employeedetail" Type="Self.employeedetail" Multiplicity="1" />
+          <End Role="workhistory" Type="Self.workhistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeedetail">
+              <PropertyRef Name="employeeID" />
+            </Principal>
+            <Dependent Role="workhistory">
+              <PropertyRef Name="employeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="employees_manager_ver2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="contactemployeeinfoes" EntityType="Self.contactemployeeinfo" />
+          <EntitySet Name="employeedetails" EntityType="Self.employeedetail" />
+          <EntitySet Name="qualifications" EntityType="Self.qualification" />
+          <EntitySet Name="salaryinfoes" EntityType="Self.salaryinfo" />
+          <EntitySet Name="timeinfoes" EntityType="Self.timeinfo" />
+          <EntitySet Name="workhistories" EntityType="Self.workhistory" />
+          <AssociationSet Name="contactemployeeinfo_ibfk_1" Association="Self.contactemployeeinfo_ibfk_1">
+            <End Role="employeedetail" EntitySet="employeedetails" />
+            <End Role="contactemployeeinfo" EntitySet="contactemployeeinfoes" />
+          </AssociationSet>
+          <AssociationSet Name="qualification_ibfk_1" Association="Self.qualification_ibfk_1">
+            <End Role="employeedetail" EntitySet="employeedetails" />
+            <End Role="qualification" EntitySet="qualifications" />
+          </AssociationSet>
+          <AssociationSet Name="timeinfo_ibfk_1" Association="Self.timeinfo_ibfk_1">
+            <End Role="employeedetail" EntitySet="employeedetails" />
+            <End Role="timeinfo" EntitySet="timeinfoes" />
+          </AssociationSet>
+          <AssociationSet Name="workhistory_ibfk_1" Association="Self.workhistory_ibfk_1">
+            <End Role="employeedetail" EntitySet="employeedetails" />
+            <End Role="workhistory" EntitySet="workhistories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="employees_manager_ver2ModelStoreContainer" CdmEntityContainer="employees_manager_ver2Entities">
+          <EntitySetMapping Name="contactemployeeinfoes">
+            <EntityTypeMapping TypeName="employees_manager_ver2Model.contactemployeeinfo">
+              <MappingFragment StoreEntitySet="contactemployeeinfo">
+                <ScalarProperty Name="idContact" ColumnName="idContact" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="ctCity" ColumnName="ctCity" />
+                <ScalarProperty Name="ctAddress" ColumnName="ctAddress" />
+                <ScalarProperty Name="ctPostalCode" ColumnName="ctPostalCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeedetails">
+            <EntityTypeMapping TypeName="employees_manager_ver2Model.employeedetail">
+              <MappingFragment StoreEntitySet="employeedetail">
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="dateOfBirth" ColumnName="dateOfBirth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="qualifications">
+            <EntityTypeMapping TypeName="employees_manager_ver2Model.qualification">
+              <MappingFragment StoreEntitySet="qualification">
+                <ScalarProperty Name="idQualification" ColumnName="idQualification" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="experience" ColumnName="experience" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="salaryinfoes">
+            <EntityTypeMapping TypeName="employees_manager_ver2Model.salaryinfo">
+              <MappingFragment StoreEntitySet="salaryinfo">
+                <ScalarProperty Name="idSalaryInfo" ColumnName="idSalaryInfo" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="monthlySalary" ColumnName="monthlySalary" />
+                <ScalarProperty Name="moneyCurrency" ColumnName="moneyCurrency" />
+                <ScalarProperty Name="moneyDeductions" ColumnName="moneyDeductions" />
+                <ScalarProperty Name="moneyInsurance" ColumnName="moneyInsurance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="timeinfoes">
+            <EntityTypeMapping TypeName="employees_manager_ver2Model.timeinfo">
+              <MappingFragment StoreEntitySet="timeinfo">
+                <ScalarProperty Name="idTime" ColumnName="idTime" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="workHours" ColumnName="workHours" />
+                <ScalarProperty Name="offDay" ColumnName="offDay" />
+                <ScalarProperty Name="overTime" ColumnName="overTime" />
+                <ScalarProperty Name="extraday" ColumnName="extraday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="workhistories">
+            <EntityTypeMapping TypeName="employees_manager_ver2Model.workhistory">
+              <MappingFragment StoreEntitySet="workhistory">
+                <ScalarProperty Name="idWorkHistory" ColumnName="idWorkHistory" />
+                <ScalarProperty Name="employeeID" ColumnName="employeeID" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+                <ScalarProperty Name="officenumber" ColumnName="officenumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

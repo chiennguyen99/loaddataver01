@@ -13,7 +13,7 @@ using loaddataver01.Models;
 
 namespace loaddataver01.Controllers
 {
-    //asad
+    
     public class employeedetails1Controller : ApiController
     {
         private employees_manager_ver2Entities db = new employees_manager_ver2Entities();
